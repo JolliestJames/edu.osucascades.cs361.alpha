@@ -9,7 +9,7 @@ public class Sketch extends PApplet
         fullScreen();
     }
 
-    public setup()
+    public void setup()
     {
         background(55);
     }
