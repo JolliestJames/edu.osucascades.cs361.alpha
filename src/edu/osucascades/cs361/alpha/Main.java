@@ -1,10 +1,10 @@
 package edu.osucascades.cs361.alpha;
 
-//import processing.core.PApplet;
+import processing.core.PApplet;
 
 public class Main {
 
-    private final static String[] OPTIONS = {"--present", "GameSketch"};
+    private final static String[] OPTIONS = {"--present", "edu.osucascades.cs361.alpha.Sketch"};
 
     //A static method is a method that belongs to the class, not the instance
     public static void main(String[] args) {
