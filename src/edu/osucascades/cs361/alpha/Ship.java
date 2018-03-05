@@ -22,11 +22,11 @@ public class Ship {
             x, y - p.height/20);
     }
 
-    public void moveShipRight() {
+    public void moveRight() {
         x += speed;
     }
 
-    public void moveShipLeft() {
+    public void moveLeft() {
         x -= speed;
     }
 
