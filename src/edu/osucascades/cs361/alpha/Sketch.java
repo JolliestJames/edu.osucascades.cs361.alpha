@@ -34,6 +34,7 @@ public class Sketch extends PApplet
 
     private void drawNathanCircle()
     {
-        
+        fill(180, 180, 108);
+        ellipse(widht-150, width-150, 100, 100);
     }
 }
