@@ -4,24 +4,30 @@ import processing.core.PApplet;
 public class Ship {
 
     PApplet p;
-    int xPosition;
-    int yPosition;
+    int x;
+    int y;
+    int speed;
 
     public Ship(PApplet pApplet) {
         p = pApplet;
-        xPosition = p.width/2;
-        yPosition = p.height-p.height/10;
+        x = p.width/2;
+        y = p.height-p.height/10;
+        speed = 10;
     }
 
     public void draw() {
         p.fill(255, 255, 255);
-        p.triangle(xPosition - p.width/20, yPosition,
-            xPosition + p.width/20, yPosition,
-            xPosition, yPosition - p.height/20);
+        p.triangle(x - p.width/20, y,
+            x + p.width/20, y,
+            x, y - p.height/20);
     }
 
-    private void moveShip(int distanceX) {
-        xPosition += distanceX;
+    public void moveShipRight() {
+        x += speed;
+    }
+
+    public void moveShipLeft() {
+        x -= speed;
     }
 
     private void fireRocket() {

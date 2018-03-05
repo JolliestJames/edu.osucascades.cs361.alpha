@@ -1,6 +1,7 @@
 package edu.osucascades.cs361.alpha;
 
 import processing.core.PApplet;
+import java.lang.*;
 //import edu.osucascades.cs361.alpha.Ship;
 
 public class Sketch extends PApplet
@@ -20,12 +21,22 @@ public class Sketch extends PApplet
 
     public void draw()
     {
+        background(55);
         fill(255, 255, 0);
         ellipse(width/2, height/2, 100, 100);
         drawJamesCircle();
         drawLeoCircle();
         drawNathanCircle();
         ship.draw();
+    }
+
+    public void keyPressed() {
+        if (key == 'd') {
+            ship.moveShipRight();
+        }
+        if (key == 'a') {
+            ship.moveShipLeft();
+        }
     }
 
     private void drawJamesCircle()
