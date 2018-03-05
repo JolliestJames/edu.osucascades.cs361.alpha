@@ -19,6 +19,7 @@ public class Sketch extends PApplet
         fill(255, 255, 0);
         ellipse(width/2, height/2, 100, 100);
         drawJamesCircle();
+        drawNathanCircle();
     }
 
     private void drawJamesCircle()
@@ -35,6 +36,6 @@ public class Sketch extends PApplet
     private void drawNathanCircle()
     {
         fill(180, 180, 108);
-        ellipse(widht-150, width-150, 100, 100);
+        ellipse(width-150, height-150, 100, 100);
     }
 }
