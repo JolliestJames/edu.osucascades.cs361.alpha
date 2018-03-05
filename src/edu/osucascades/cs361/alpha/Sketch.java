@@ -1,9 +1,12 @@
 package edu.osucascades.cs361.alpha;
 
 import processing.core.PApplet;
+//import edu.osucascades.cs361.alpha.Ship;
 
 public class Sketch extends PApplet
 {
+    Ship ship;
+
     public void settings()
     {
         fullScreen();
@@ -12,6 +15,7 @@ public class Sketch extends PApplet
     public void setup()
     {
         background(55);
+        ship = new Ship(this);
     }
 
     public void draw()
@@ -21,6 +25,7 @@ public class Sketch extends PApplet
         drawJamesCircle();
         drawLeoCircle();
         drawNathanCircle();
+        ship.draw();
     }
 
     private void drawJamesCircle()
