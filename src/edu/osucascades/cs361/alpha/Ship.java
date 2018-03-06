@@ -1,5 +1,6 @@
 package edu.osucascades.cs361.alpha;
-import processing.core.PApplet;
+// we shouldn't need to import this as we are passing the PApplet object into the class
+// import processing.core.PApplet;
 
 public class Ship {
 
