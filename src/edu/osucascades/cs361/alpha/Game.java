@@ -21,11 +21,12 @@ public class Game {
         forts.add(new Fort(p, p.width/3, p.height-p.height/4));
         forts.add(new Fort(p, p.width - p.width/3 - p.width/8, p.height-p.height/4));
         forts.add(new Fort(p, p.width - p.width/10 - p.width/8, p.height-p.height/4));
+
         for (int i = 0; i < 10; i++) {
-            redAliens.add(new AlienRed (p, 100, 100));
-            yellowAliens.add(new AlienYellow (p, 100, 100));
-            greenAliens.add(new AlienGreen (p, 100, 100));
-            blueAliens.add(new AlienBlue (p, 100, 100));
+            redAliens.add(new AlienRed (p, 100+i*100, 100));
+            yellowAliens.add(new AlienYellow (p, 100+i*100, 200));
+            greenAliens.add(new AlienGreen (p, 100+i*100, 300));
+            blueAliens.add(new AlienBlue (p, 100+i*100, 400));
         }
 
 //        p.fullScreen();
@@ -42,6 +43,7 @@ public class Game {
                 ship.moveLeft();
             }
         }
+        //TODO: move each alien to the right left depending on direction
     }
 
     public void draw() {
@@ -51,7 +53,20 @@ public class Game {
         for( Fort fort : forts) {
             fort.draw();
         }
+        for( AlienYellow yellowAlien : yellowAliens) {
+            yellowAlien.draw();
+        }
 
+        for( AlienRed redAlien : redAliens) {
+            redAlien.draw();
+        }
 
+        for( AlienGreen greenAlien : greenAliens) {
+            greenAlien.draw();
+        }
+
+        for( AlienBlue blueAlien : blueAliens) {
+            blueAlien.draw();
+        }
     }
 }

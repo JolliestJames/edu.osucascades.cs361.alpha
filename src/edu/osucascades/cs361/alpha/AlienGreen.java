@@ -6,12 +6,13 @@ public class AlienGreen {
 
     PApplet p;
     String type;
-    int x, y, damage, speed, pointValue;
+    int x, y, damage, speed, pointValue, radius;
 
     public AlienGreen (PApplet pApplet, int xPos, int yPos) {
         p = pApplet;
         x = xPos;
         y = yPos;
+        radius = p.width/30;
         damage = 0;
 
         // need some logic to determine point value here
@@ -37,6 +38,7 @@ public class AlienGreen {
     }
 
     public void draw() {
-        // logic to draw Alien goes here
+        p.fill(0, 255, 0);
+        p.ellipse(x, y, radius, radius);
     }
 }
