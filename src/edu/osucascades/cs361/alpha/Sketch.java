@@ -1,11 +1,11 @@
 package edu.osucascades.cs361.alpha;
-
 import processing.core.PApplet;
+import java.util.*;
 
 public class Sketch extends PApplet
 {
     Ship ship;
-    Fort[] forts;
+    ArrayList<Fort> forts = new ArrayList<>();
 
     public void settings()
     {
@@ -16,12 +16,10 @@ public class Sketch extends PApplet
     {
         background(55);
         ship = new Ship(this);
-        forts = new Fort[4];
-        forts[0] = new Fort(this, width/10, height-height/4);
-        forts[1] = new Fort(this, width/3, height-height/4);
-        forts[2] = new Fort(this, width - width/3 - width/8, height-height/4);
-        forts[3] = new Fort(this, width - width/10 - width/8, height-height/4);
-
+        forts.add(new Fort(this, width/10, height-height/4));
+        forts.add(new Fort(this, width/3, height-height/4));
+        forts.add(new Fort(this, width - width/3 - width/8, height-height/4));
+        forts.add(new Fort(this, width - width/10 - width/8, height-height/4));
     }
 
     public void draw()
