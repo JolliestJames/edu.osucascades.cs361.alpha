@@ -6,6 +6,10 @@ public class Sketch extends PApplet
 {
     Ship ship;
     ArrayList<Fort> forts = new ArrayList<>();
+    ArrayList<AlienRed> redAliens = new ArrayList();
+    ArrayList<AlienYellow> yellowAliens = new ArrayList();
+    ArrayList<AlienGreen> greenAliens = new ArrayList();
+    ArrayList<AlienBlue> blueAliens = new ArrayList();
 
     public void settings()
     {
