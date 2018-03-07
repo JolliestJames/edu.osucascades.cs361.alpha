@@ -1,12 +1,14 @@
 package edu.osucascades.cs361.alpha;
 
+import processing.core.PApplet;
+
 public class Projectile {
 
     PApplet p;
     int x, y, speed, yield;
-    string type;
+    String type;
 
-    public Projectile(PApplet pApplet, int xPos, int yPos, string projectileType) {
+    public Projectile(PApplet pApplet, int xPos, int yPos, String projectileType) {
         p = pApplet;
         x = xPos;
         y = yPos;

@@ -1,5 +1,7 @@
 package edu.osucascades.cs361.alpha;
 
+import processing.core.PApplet;
+
 public class Game {
 
     PApplet p;

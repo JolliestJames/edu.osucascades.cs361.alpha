@@ -1,12 +1,14 @@
 package edu.osucascades.cs361.alpha;
 
+import processing.core.PApplet;
+
 public class Enemy {
 
     PApplet p;
-    string type;
+    String type;
     int x, y, damage, speed, pointValue;
 
-    public Enemy (PApplet pApplet, int xPos, int yPos, string enemyType) {
+    public Enemy (PApplet pApplet, int xPos, int yPos, String enemyType) {
         p = pApplet;
         x = xPos;
         y = yPos;
