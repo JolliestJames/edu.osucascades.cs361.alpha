@@ -6,18 +6,33 @@ public class AlienGreen {
 
     PApplet p;
     String type;
-    int x, y, damage, speed, pointValue, radius;
+    int x, y, damage, speed, pointValue, radius, velocity;
 
     public AlienGreen (PApplet pApplet, int xPos, int yPos) {
         p = pApplet;
         x = xPos;
         y = yPos;
-        radius = p.width/30;
+        radius = p.width/25;
         damage = 0;
+        velocity = 3;
 
         // need some logic to determine point value here
         // pretty sure this will be linked to the Alien type
         // will ask Yong about this on Wednesday; believe a switch statement is best
+    }
+
+    public void move() {
+        x += velocity;
+        if(x > p.width - p.width/50)
+        {
+            velocity = -velocity;
+            y += p.height/20;
+        }
+        else if( x < p.width/50)
+        {
+            velocity = -velocity;
+            y += p.height/20;
+        }
     }
 
     public void moveLeft() {

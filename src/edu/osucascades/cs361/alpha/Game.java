@@ -8,6 +8,10 @@ public class Game {
     PApplet p;
     Ship ship;
     ArrayList<Fort> forts = new ArrayList();
+
+    //Create 2D array for each row of aliens
+    ArrayList<ArrayList<Objects>> Aliens = new ArrayList();
+
     ArrayList<AlienRed> redAliens = new ArrayList();
     ArrayList<AlienYellow> yellowAliens = new ArrayList();
     ArrayList<AlienGreen> greenAliens = new ArrayList();
@@ -24,11 +28,11 @@ public class Game {
         forts.add(new Fort(p, p.width - p.width/10 - p.width/8, p.height-p.height/4));
 
         for (int i = 0; i < 10; i++) {
-            redAliens.add(new AlienRed (p, 100+i*100, 100));
-            yellowAliens.add(new AlienYellow (p, 100+i*100, 200));
-            greenAliens.add(new AlienGreen (p, 100+i*100, 300));
-            blueAliens.add(new AlienBlue (p, 100+i*100, 400));
-            purpleAliens.add(new AlienPurple (p, 100+i*100, 500));
+            redAliens.add(new AlienRed (p, p.width/4+i*p.width/18, 100));
+            yellowAliens.add(new AlienYellow (p, p.width/4+i*p.width/18, 200));
+            greenAliens.add(new AlienGreen (p, p.width/4+i*p.width/18, 300));
+            blueAliens.add(new AlienBlue (p, p.width/4+i*p.width/18, 400));
+            purpleAliens.add(new AlienPurple (p, p.width/4+i*p.width/18, 500));
         }
 
 //        p.fullScreen();
@@ -45,7 +49,7 @@ public class Game {
                 ship.moveLeft();
             }
         }
-        //TODO: move each alien to the right left depending on direction flag
+        //TODO: How do we handle change to alien velocity of an entire row at a single time?
     }
 
     public void draw() {
@@ -57,22 +61,27 @@ public class Game {
             fort.draw();
         }
         for( AlienYellow yellowAlien : yellowAliens) {
+            yellowAlien.move();
             yellowAlien.draw();
         }
 
         for( AlienRed redAlien : redAliens) {
+            redAlien.move();
             redAlien.draw();
         }
 
         for( AlienGreen greenAlien : greenAliens) {
+            greenAlien.move();
             greenAlien.draw();
         }
 
         for( AlienBlue blueAlien : blueAliens) {
+            blueAlien.move();
             blueAlien.draw();
         }
 
         for( AlienPurple purpleAlien : purpleAliens) {
+            purpleAlien.move();
             purpleAlien.draw();
         }
     }
