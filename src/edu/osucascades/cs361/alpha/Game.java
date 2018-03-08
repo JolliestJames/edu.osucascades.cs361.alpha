@@ -12,6 +12,7 @@ public class Game {
     ArrayList<AlienYellow> yellowAliens = new ArrayList();
     ArrayList<AlienGreen> greenAliens = new ArrayList();
     ArrayList<AlienBlue> blueAliens = new ArrayList();
+    ArrayList<AlienPurple> purpleAliens = new ArrayList();
 
     public Game (PApplet pApplet){
         // initializes a new game
@@ -27,6 +28,7 @@ public class Game {
             yellowAliens.add(new AlienYellow (p, 100+i*100, 200));
             greenAliens.add(new AlienGreen (p, 100+i*100, 300));
             blueAliens.add(new AlienBlue (p, 100+i*100, 400));
+            purpleAliens.add(new AlienPurple (p, 100+i*100, 500));
         }
 
 //        p.fullScreen();
@@ -43,13 +45,14 @@ public class Game {
                 ship.moveLeft();
             }
         }
-        //TODO: move each alien to the right left depending on direction
+        //TODO: move each alien to the right left depending on direction flag
     }
 
     public void draw() {
         // draw all objects in the game
         p.background(55);
         ship.draw();
+
         for( Fort fort : forts) {
             fort.draw();
         }
@@ -67,6 +70,10 @@ public class Game {
 
         for( AlienBlue blueAlien : blueAliens) {
             blueAlien.draw();
+        }
+
+        for( AlienPurple purpleAlien : purpleAliens) {
+            purpleAlien.draw();
         }
     }
 }
