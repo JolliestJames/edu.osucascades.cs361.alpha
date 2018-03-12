@@ -13,7 +13,7 @@ public class AlienPurple {
         x = xPos;
         y = yPos;
         radius = p.width/25;
-        velocity = 3;
+        velocity = 30;
         damage = 0;
 
         // need some logic to determine point value here

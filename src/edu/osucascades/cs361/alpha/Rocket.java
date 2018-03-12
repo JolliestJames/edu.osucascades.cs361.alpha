@@ -11,7 +11,7 @@ public class Rocket {
         p = pApplet;
         x = xPos;
         y = yPos;
-        speed = 10;
+        speed = 100;
     }
 
     public void move() {
@@ -27,7 +27,7 @@ public class Rocket {
 
     public void draw() {
         p.fill(255, 255, 255);
-        p.rect (x, y, 15, 15);
+        p.rect (x, y, 15, 35);
         // logic to draw the projectile goes here
     }
 }

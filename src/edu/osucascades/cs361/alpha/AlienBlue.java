@@ -14,7 +14,7 @@ public class AlienBlue {
         y = yPos;
         radius = p.width/25;
         damage = 0;
-        velocity = 3;
+        velocity = 30;
 
         // need some logic to determine point value here
         // pretty sure this will be linked to the Alien type

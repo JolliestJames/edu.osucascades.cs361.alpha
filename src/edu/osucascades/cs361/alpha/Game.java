@@ -9,6 +9,7 @@ public class Game {
     Ship ship;
     Score score;
     int timeBuffer = 0;
+    int alienMoveTime = 0;
     ArrayList<Bomb> bombs = new ArrayList();
     ArrayList<Rocket> rockets = new ArrayList();
     ArrayList<Fort> forts = new ArrayList();
@@ -49,6 +50,7 @@ public class Game {
     public void update() {
         // update all objects in the game
         timeBuffer -= 1;
+        alienMoveTime += 1;
         if (p.keyPressed) {
             if (p.key == 'd') {
                 ship.moveRight();
@@ -80,30 +82,36 @@ public class Game {
             fort.draw();
         }
 
-        for( AlienYellow yellowAlien : yellowAliens) {
-            yellowAlien.move();
-            yellowAlien.draw();
-        }
+            for (AlienYellow yellowAlien : yellowAliens) {
+                if (alienMoveTime == 40) {yellowAlien.move();}
+                yellowAlien.draw();
+            }
 
-        for( AlienRed redAlien : redAliens) {
-            redAlien.move();
-            redAlien.draw();
-        }
+            for (AlienRed redAlien : redAliens) {
+                if (alienMoveTime == 35) {redAlien.move();}
+                redAlien.draw();
+            }
 
-        for( AlienGreen greenAlien : greenAliens) {
-            greenAlien.move();
-            greenAlien.draw();
-        }
+            for (AlienGreen greenAlien : greenAliens) {
+                if (alienMoveTime == 45) {greenAlien.move();}
+                greenAlien.draw();
+            }
 
-        for( AlienBlue blueAlien : blueAliens) {
-            blueAlien.move();
-            blueAlien.draw();
-        }
+            for (AlienBlue blueAlien : blueAliens) {
+                if (alienMoveTime == 50) {
+                    blueAlien.move();
+                }
+                blueAlien.draw();
+            }
 
-        for( AlienPurple purpleAlien : purpleAliens) {
-            purpleAlien.move();
-            purpleAlien.draw();
-        }
+            for (AlienPurple purpleAlien : purpleAliens) {
+                if (alienMoveTime == 55) {purpleAlien.move();}
+                purpleAlien.draw();
+            }
+            if (alienMoveTime >= 55) {
+                alienMoveTime = 0;
+            }
+
 
         for (Rocket rocket : rockets) {
             rocket.move();
