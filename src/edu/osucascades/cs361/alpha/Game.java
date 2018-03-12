@@ -66,24 +66,84 @@ public class Game {
         }
         // TODO: How do we handle change to alien velocity of an entire row at a single time?
 
-        for (AlienYellow yellowAlien : yellowAliens) {
-            if (alienMoveTime == 40) {yellowAlien.move();}
+        if (alienMoveTime == 40) {
+            for (AlienYellow yellowAlien: yellowAliens) {
+                if (yellowAliens.get(yellowAliens.size() - 1).x > p.width - p.width / 50) {
+                    yellowAlien.changeVelocity();
+                    yellowAlien.moveDown();
+                } else if (yellowAliens.get(0).x < p.width / 50) {
+                    yellowAlien.changeVelocity();
+                    yellowAlien.moveDown();
+                }
+            }
         }
 
-        for (AlienRed redAlien : redAliens) {
-            if (alienMoveTime == 35) {redAlien.move();}
+        if(alienMoveTime == 40) {
+            for (AlienYellow yellowAlien : yellowAliens) {yellowAlien.move();}
         }
 
-        for (AlienGreen greenAlien : greenAliens) {
-            if (alienMoveTime == 45) {greenAlien.move();}
+        if (alienMoveTime == 35) {
+            for (AlienRed redAlien: redAliens) {
+                if (redAliens.get(redAliens.size() - 1).x > p.width - p.width / 50) {
+                    redAlien.changeVelocity();
+                    redAlien.moveDown();
+                } else if (redAliens.get(0).x < p.width / 50) {
+                    redAlien.changeVelocity();
+                    redAlien.moveDown();
+                }
+            }
         }
 
-        for (AlienBlue blueAlien : blueAliens) {
-            if (alienMoveTime == 50) {blueAlien.move();}
+        if (alienMoveTime == 35) {
+            for (AlienRed redAlien : redAliens) { redAlien.move(); }
         }
 
-        for (AlienPurple purpleAlien : purpleAliens) {
-            if (alienMoveTime == 55) {purpleAlien.move();}
+        if (alienMoveTime == 45) {
+            for (AlienGreen greenAlien : greenAliens) {
+                if (greenAliens.get(greenAliens.size() - 1).x > p.width - p.width / 50) {
+                    greenAlien.changeVelocity();
+                    greenAlien.moveDown();
+                } else if (greenAliens.get(0).x < p.width / 50) {
+                    greenAlien.changeVelocity();
+                    greenAlien.moveDown();
+                }
+            }
+        }
+
+        if (alienMoveTime == 45) {
+            for (AlienGreen greenAlien : greenAliens) { greenAlien.move(); }
+        }
+
+        if (alienMoveTime == 50) {
+            for (AlienBlue blueAlien : blueAliens) {
+                if (blueAliens.get(blueAliens.size() - 1).x > p.width - p.width / 50) {
+                    blueAlien.changeVelocity();
+                    blueAlien.moveDown();
+                } else if (blueAliens.get(0).x < p.width / 50) {
+                    blueAlien.changeVelocity();
+                    blueAlien.moveDown();
+                }
+            }
+        }
+
+        if (alienMoveTime == 50) {
+            for (AlienBlue blueAlien : blueAliens) { blueAlien.move(); }
+        }
+
+        if (alienMoveTime == 55) {
+            for (AlienPurple purpleAlien : purpleAliens) {
+                if (purpleAliens.get(purpleAliens.size() - 1).x > p.width - p.width / 50) {
+                    purpleAlien.changeVelocity();
+                    purpleAlien .moveDown();
+                } else if (purpleAliens.get(0).x < p.width / 50) {
+                    purpleAlien.changeVelocity();
+                    purpleAlien.moveDown();
+                }
+            }
+        }
+
+        if (alienMoveTime == 55) {
+            for (AlienPurple purpleAlien : purpleAliens) {purpleAlien.move();}
         }
 
         if (alienMoveTime >= 55) {

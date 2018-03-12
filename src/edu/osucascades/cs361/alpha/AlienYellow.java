@@ -23,18 +23,15 @@ public class AlienYellow {
 
     public void move() {
         x += velocity;
-        if(x > p.width - p.width/50)
-        {
-            velocity = -velocity;
-            y += p.height/20;
-        }
-        else if( x < p.width/50)
-        {
-            velocity = -velocity;
-            y += p.height/20;
-        }
     }
 
+    public void moveDown() {
+        y += p.height/20;
+    }
+
+    public void changeVelocity() {
+        velocity = -velocity;
+    }
 
     public void moveLeft() {
         // logic to move left goes here
@@ -42,11 +39,6 @@ public class AlienYellow {
 
     public void moveRight() {
         // logic to move right goes here
-    }
-
-    public void moveDown() {
-        // logic to move down goes here
-        // this should increase speed every time it triggers
     }
 
     public void dropBomb() {
