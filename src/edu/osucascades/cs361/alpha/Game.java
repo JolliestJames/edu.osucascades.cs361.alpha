@@ -9,6 +9,7 @@ public class Game {
     Ship ship;
     Score score;
     ArrayList<Fort> forts = new ArrayList();
+    AlienUFO mothership;
 
     //Create 2D array for each row of aliens
     ArrayList<ArrayList<Objects>> Aliens = new ArrayList();
@@ -24,6 +25,7 @@ public class Game {
         p = pApplet;
         ship = new Ship(p);
         score = new Score(p);
+        mothership = new AlienUFO(p);
         forts.add(new Fort(p, p.width/10, p.height-p.height/4));
         forts.add(new Fort(p, p.width/3, p.height-p.height/4));
         forts.add(new Fort(p, p.width - p.width/3 - p.width/8, p.height-p.height/4));
@@ -37,7 +39,7 @@ public class Game {
             purpleAliens.add(new AlienPurple (p, p.width/4+i*p.width/18, 500));
         }
 
-//        p.fullScreen();
+        // p.fullScreen();
         p.background(55);
     }
 
@@ -52,6 +54,8 @@ public class Game {
             }
         }
         // TODO: How do we handle change to alien velocity of an entire row at a single time?
+
+        mothership.move();
     }
 
     public void draw() {
@@ -59,6 +63,7 @@ public class Game {
         p.background(55);
         ship.draw();
         score.draw();
+        mothership.draw();
 
         for( Fort fort : forts) {
             fort.draw();
