@@ -56,12 +56,10 @@ public class Game {
             if (p.key == 'a') {
                 ship.moveLeft();
             }
-            if (p.key == ' ') {
-                if (timeBuffer <= 0) {
+            if (p.key == ' ' && timeBuffer <= 0) {
                 // Set time delay between rocket shots
-                    rockets.add(new Rocket(p, ship.x, ship.y - ship.p.height/20));
-                    timeBuffer = 40;
-                }
+                rockets.add(new Rocket(p, ship.x, ship.y - ship.p.height/20));
+                timeBuffer = 40;
             }
         }
         // TODO: How do we handle change to alien velocity of an entire row at a single time?
