@@ -8,6 +8,9 @@ public class Game {
     PApplet p;
     Ship ship;
     Score score;
+    int timeBuffer = 0;
+    ArrayList<Bomb> bombs = new ArrayList();
+    ArrayList<Rocket> rockets = new ArrayList();
     ArrayList<Fort> forts = new ArrayList();
     AlienUFO mothership;
 
@@ -45,12 +48,20 @@ public class Game {
 
     public void update() {
         // update all objects in the game
+        timeBuffer -= 1;
         if (p.keyPressed) {
             if (p.key == 'd') {
                 ship.moveRight();
             }
             if (p.key == 'a') {
                 ship.moveLeft();
+            }
+            if (p.key == ' ') {
+                if (timeBuffer <= 0) {
+                // Set time delay between rocket shots
+                    rockets.add(new Rocket(p, ship.x, ship.y - ship.p.height/20));
+                    timeBuffer = 40;
+                }
             }
         }
         // TODO: How do we handle change to alien velocity of an entire row at a single time?
@@ -93,5 +104,12 @@ public class Game {
             purpleAlien.move();
             purpleAlien.draw();
         }
+
+        for (Rocket rocket : rockets) {
+            rocket.move();
+            rocket.draw();
+        }
+
+
     }
 }

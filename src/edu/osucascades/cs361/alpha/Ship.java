@@ -7,6 +7,7 @@ public class Ship {
     int x;
     int y;
     int speed;
+    Rocket rocket;
 
     public Ship(PApplet pApplet) {
         p = pApplet;
@@ -30,8 +31,8 @@ public class Ship {
         x -= speed;
     }
 
-    private void fireRocket() {
-
+    public void fireRocket() {
+        rocket = new Rocket(p, x, y);
     }
 
 }
