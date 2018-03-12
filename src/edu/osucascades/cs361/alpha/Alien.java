@@ -2,23 +2,22 @@ package edu.osucascades.cs361.alpha;
 
 import processing.core.PApplet;
 
-public class AlienYellow {
+public abstract class Alien {
 
     PApplet p;
     String type;
-    int x, y, damage, speed, pointValue, radius, velocity;
+    int x, y, damage, speed, pointValue, radius, velocity, color;
 
-    public AlienYellow(PApplet pApplet, int xPos, int yPos) {
-        p = pApplet;
-        x = xPos;
-        y = yPos;
+    //public abstract void fadeInAndOut();
+
+    public Alien(PApplet p, int x, int y, int damage, int color) {
+        this.p = p;
+        this.x = x;
+        this.y = y;
         radius = p.width/25;
-        damage = 0;
         velocity = 30;
-
-        // need some logic to determine point value here
-        // pretty sure this will be linked to the Alien type
-        // will ask Yong about this on Wednesday; believe a switch statement is best
+        this.damage = damage;
+        this.color = color;
     }
 
     public void move() {
@@ -46,7 +45,8 @@ public class AlienYellow {
     }
 
     public void draw() {
-        p.fill(255, 255, 0);
+        p.fill(this.color);
         p.ellipse(x, y, radius, radius);
     }
+
 }
