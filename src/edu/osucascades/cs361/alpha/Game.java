@@ -25,7 +25,6 @@ public class Game {
     ArrayList<AlienPurple> purpleAliens = new ArrayList();
 
     public Game (PApplet pApplet){
-        // initializes a new game
         p = pApplet;
         ship = new Ship(p);
         score = new Score(p);
@@ -43,7 +42,6 @@ public class Game {
             purpleAliens.add(new AlienPurple (p, p.width/4+i*p.width/18, 500));
         }
 
-        // p.fullScreen();
         p.background(55);
     }
 
@@ -68,6 +66,30 @@ public class Game {
         }
         // TODO: How do we handle change to alien velocity of an entire row at a single time?
 
+        for (AlienYellow yellowAlien : yellowAliens) {
+            if (alienMoveTime == 40) {yellowAlien.move();}
+        }
+
+        for (AlienRed redAlien : redAliens) {
+            if (alienMoveTime == 35) {redAlien.move();}
+        }
+
+        for (AlienGreen greenAlien : greenAliens) {
+            if (alienMoveTime == 45) {greenAlien.move();}
+        }
+
+        for (AlienBlue blueAlien : blueAliens) {
+            if (alienMoveTime == 50) {blueAlien.move();}
+        }
+
+        for (AlienPurple purpleAlien : purpleAliens) {
+            if (alienMoveTime == 55) {purpleAlien.move();}
+        }
+
+        if (alienMoveTime >= 55) {
+            alienMoveTime = 0;
+        }
+
         mothership.move();
     }
 
@@ -82,35 +104,29 @@ public class Game {
             fort.draw();
         }
 
-            for (AlienYellow yellowAlien : yellowAliens) {
-                if (alienMoveTime == 40) {yellowAlien.move();}
-                yellowAlien.draw();
-            }
+        for (AlienYellow yellowAlien : yellowAliens) {
+            yellowAlien.draw();
+        }
 
-            for (AlienRed redAlien : redAliens) {
-                if (alienMoveTime == 35) {redAlien.move();}
-                redAlien.draw();
-            }
+        for (AlienRed redAlien : redAliens) {
+            redAlien.draw();
+        }
 
-            for (AlienGreen greenAlien : greenAliens) {
-                if (alienMoveTime == 45) {greenAlien.move();}
-                greenAlien.draw();
-            }
+        for (AlienGreen greenAlien : greenAliens) {
+            greenAlien.draw();
+        }
 
-            for (AlienBlue blueAlien : blueAliens) {
-                if (alienMoveTime == 50) {
-                    blueAlien.move();
-                }
-                blueAlien.draw();
-            }
+        for (AlienBlue blueAlien : blueAliens) {
+            blueAlien.draw();
+        }
 
-            for (AlienPurple purpleAlien : purpleAliens) {
-                if (alienMoveTime == 55) {purpleAlien.move();}
-                purpleAlien.draw();
-            }
-            if (alienMoveTime >= 55) {
-                alienMoveTime = 0;
-            }
+        for (AlienPurple purpleAlien : purpleAliens) {
+            purpleAlien.draw();
+        }
+
+        if (alienMoveTime >= 55) {
+            alienMoveTime = 0;
+        }
 
 
         for (Rocket rocket : rockets) {
