@@ -62,9 +62,9 @@ public class Game {
                 timeBuffer = 40;
             }
         }
-        // TODO: How do we handle change to alien velocity of an entire row at a single time?
 
         if (alienMoveTime == 40) {
+
             for (AlienYellow yellowAlien: yellowAliens) {
                 if (yellowAliens.get(yellowAliens.size() - 1).x > p.width - p.width / 50) {
                     yellowAlien.changeVelocity();
@@ -74,9 +74,7 @@ public class Game {
                     yellowAlien.moveDown();
                 }
             }
-        }
 
-        if(alienMoveTime == 40) {
             for (AlienYellow yellowAlien : yellowAliens) {yellowAlien.move();}
         }
 
@@ -90,9 +88,7 @@ public class Game {
                     redAlien.moveDown();
                 }
             }
-        }
 
-        if (alienMoveTime == 35) {
             for (AlienRed redAlien : redAliens) { redAlien.move(); }
         }
 
@@ -106,9 +102,7 @@ public class Game {
                     greenAlien.moveDown();
                 }
             }
-        }
 
-        if (alienMoveTime == 45) {
             for (AlienGreen greenAlien : greenAliens) { greenAlien.move(); }
         }
 
@@ -122,9 +116,7 @@ public class Game {
                     blueAlien.moveDown();
                 }
             }
-        }
 
-        if (alienMoveTime == 50) {
             for (AlienBlue blueAlien : blueAliens) { blueAlien.move(); }
         }
 
@@ -138,9 +130,7 @@ public class Game {
                     purpleAlien.moveDown();
                 }
             }
-        }
-
-        if (alienMoveTime == 55) {
+            
             for (AlienPurple purpleAlien : purpleAliens) {purpleAlien.move();}
         }
 
