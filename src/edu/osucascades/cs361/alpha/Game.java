@@ -16,12 +16,12 @@ public class Game {
     ArrayList<Fort> forts = new ArrayList();
     AlienUFO mothership;
 
-    private ArrayList<Fleet> fleets = new ArrayList<>();
-    private Fleet redFleet = new Fleet(p, 35);
-    private Fleet yellowFleet = new Fleet(p, 40);
-    private Fleet greenFleet = new Fleet(p, 45);
-    private Fleet blueFleet = new Fleet(p, 50);
-    private Fleet purpleFleet = new Fleet(p, 55);
+    private AlienArmada armada;
+    private Fleet redFleet;
+    private Fleet yellowFleet;
+    private Fleet greenFleet;
+    private Fleet blueFleet;
+    private Fleet purpleFleet;
 
     public Game (PApplet pApplet){
 
@@ -29,6 +29,14 @@ public class Game {
         ship = new Ship(p);
         score = new Score(p);
         mothership = new AlienUFO(p);
+
+        armada = new AlienArmada(p);
+        redFleet = new Fleet(p, 35);
+        yellowFleet = new Fleet(p, 40);
+        greenFleet = new Fleet(p, 45);
+        blueFleet = new Fleet(p, 50);
+        purpleFleet = new Fleet(p, 55);
+
         forts.add(new Fort(p, p.width/10, p.height-p.height/4));
         forts.add(new Fort(p, p.width/3, p.height-p.height/4));
         forts.add(new Fort(p, p.width - p.width/3 - p.width/8, p.height-p.height/4));
@@ -42,11 +50,11 @@ public class Game {
             purpleFleet.addAlien(new PurpleAlien (p, p.width/4+i*p.width/18, 500));
         }
 
-        fleets.add(redFleet);
-        fleets.add(yellowFleet);
-        fleets.add(greenFleet);
-        fleets.add(blueFleet);
-        fleets.add(purpleFleet);
+        armada.addFleet(redFleet);
+        armada.addFleet(yellowFleet);
+        armada.addFleet(greenFleet);
+        armada.addFleet(blueFleet);
+        armada.addFleet(purpleFleet);
 
         p.background(55);
     }
@@ -70,20 +78,7 @@ public class Game {
             }
         }
 
-        for(Fleet fleet : fleets){
-            if(fleet.shouldMove(fleetSignal)) {
-                if (fleet.rightMostAlien().x >  p.width - p.width / 50) {
-                    fleet.reverseVelocity();
-                    fleet.moveDown();
-                    fleet.increaseVelocity();
-                } else if (fleet.leftMostAlien().x < p.width / 50){
-                    fleet.reverseVelocity();
-                    fleet.moveDown();
-                    fleet.increaseVelocity();
-                }
-                fleet.move();
-            }
-        }
+        armada.moveFleets(fleetSignal);
 
         if (fleetSignal >= 55) {
             fleetSignal = 0;
@@ -103,9 +98,11 @@ public class Game {
             fort.draw();
         }
 
-        for(Fleet fleet: fleets) {
-            fleet.draw();
-        }
+        armada.drawFleets();
+
+        /*for(Fleet fleet: fleets) {
+            fleet.drawAliens();
+        }*/
 
         for (Rocket rocket : rockets) {
             rocket.move();

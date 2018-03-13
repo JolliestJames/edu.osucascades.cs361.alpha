@@ -61,7 +61,7 @@ public class Fleet {
         return aliens.get(0);
     }
 
-    public boolean shouldMoveRight () {
+    public boolean shouldMoveLeft () {
 
         if(rightMostAlien().x >  p.width - p.width / 50) {
             return true;
@@ -71,7 +71,7 @@ public class Fleet {
 
     }
 
-    public boolean shouldMoveLeft() {
+    public boolean shouldMoveRight() {
 
         if(leftMostAlien().x < p.width / 50) {
             return true;
@@ -81,7 +81,7 @@ public class Fleet {
 
     }
 
-    public void draw() {
+    public void drawAliens() {
         for(Alien alien: aliens) {
             alien.draw();
         }

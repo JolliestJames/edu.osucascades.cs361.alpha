@@ -8,10 +8,12 @@ public class AlienArmada {
 
     PApplet p;
     ArrayList<Fleet> fleets;
+    boolean canMove;
 
     public AlienArmada(PApplet p) {
         this.p = p;
         this.fleets = new ArrayList<>();
+        this.canMove = false;
     }
 
     public void addFleet(Fleet fleet) {
@@ -21,11 +23,11 @@ public class AlienArmada {
     public void moveFleets(int s) {
         for(Fleet fleet : fleets){
             if(fleet.shouldMove(s)) {
-                if (fleet.rightMostAlien().x >  p.width - p.width / 50) {
+                if (fleet.shouldMoveLeft()) {
                     fleet.reverseVelocity();
                     fleet.moveDown();
                     fleet.increaseVelocity();
-                } else if (fleet.leftMostAlien().x < p.width / 50){
+                } else if (fleet.shouldMoveRight()){
                     fleet.reverseVelocity();
                     fleet.moveDown();
                     fleet.increaseVelocity();
@@ -37,7 +39,7 @@ public class AlienArmada {
 
     public void drawFleets() {
         for(Fleet fleet : fleets) {
-            fleet.draw();
+            fleet.drawAliens();
         }
     }
 

@@ -34,14 +34,6 @@ public abstract class Alien {
         velocity += 3;
     }
 
-    public void moveLeft() {
-        // logic to move left goes here
-    }
-
-    public void moveRight() {
-        // logic to move right goes here
-    }
-
     public void dropBomb() {
         // logic to drop bomb goes here
     }
