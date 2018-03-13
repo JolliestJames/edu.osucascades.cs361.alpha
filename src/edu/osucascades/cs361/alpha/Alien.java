@@ -34,6 +34,22 @@ public abstract class Alien {
         velocity += 3;
     }
 
+    public boolean isNearRightEdge() {
+        if(x >  p.width - p.width / 45 - velocity) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isNearLeftEdge() {
+        if(x < p.width / 45 - velocity) {
+            return true;
+        }
+
+        return false;
+    }
+
     public void dropBomb() {
         // logic to drop bomb goes here
     }

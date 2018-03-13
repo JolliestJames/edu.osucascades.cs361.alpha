@@ -65,7 +65,7 @@ public class Fleet {
 
     public boolean shouldMoveLeft () {
 
-        if(rightMostAlien().x >  p.width - p.width / 50) {
+        if(rightMostAlien().isNearRightEdge()) {
             return true;
         }
 
@@ -75,7 +75,7 @@ public class Fleet {
 
     public boolean shouldMoveRight() {
 
-        if(leftMostAlien().x < p.width / 50) {
+        if(leftMostAlien().isNearLeftEdge()) {
             return true;
         }
 
