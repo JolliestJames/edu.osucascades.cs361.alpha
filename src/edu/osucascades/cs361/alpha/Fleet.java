@@ -9,13 +9,15 @@ public class Fleet {
     ArrayList<Alien> aliens;
     PApplet p;
     int moveSignal;
-    boolean canMove;
-    boolean canMoveDown;
+    boolean hasMoved;
+    boolean hasMovedDown;
 
     public Fleet(PApplet p, int t) {
         this.p = p;
         this.moveSignal= t;
         this.aliens = new ArrayList<>();
+        this.hasMoved = false;
+        this.hasMovedDown = false;
     }
 
     public void addAlien(Alien alien) {

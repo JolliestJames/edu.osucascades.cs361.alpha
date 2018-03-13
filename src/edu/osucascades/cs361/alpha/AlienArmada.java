@@ -21,18 +21,18 @@ public class AlienArmada {
     public void moveFleets(int s) {
         for(Fleet fleet : fleets){
             if(fleet.shouldMove(s)) {
-                if ((fleet.shouldMoveLeft() || fleet.shouldMoveRight()) && fleet.canMoveDown) {
+                if ((fleet.shouldMoveLeft() || fleet.shouldMoveRight()) && !fleet.hasMovedDown) {
                     fleet.reverseVelocity();
                     fleet.moveDown();
                     fleet.increaseVelocity();
-                    fleet.canMove = false;
-                    fleet.canMoveDown = false;
+                    fleet.hasMoved = true;
+                    fleet.hasMovedDown = true;
                 }
-                if (fleet.canMove) {
+                if (!fleet.hasMoved) {
                     fleet.move();
-                    fleet.canMoveDown = true;
+                    fleet.hasMovedDown= false;
                 }
-                fleet.canMove = true;
+                fleet.hasMoved = false;
             }
         }
     }
