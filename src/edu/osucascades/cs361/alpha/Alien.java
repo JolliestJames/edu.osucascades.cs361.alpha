@@ -6,16 +6,14 @@ public abstract class Alien {
 
     PApplet p;
     String type;
-    int x, y, damage, speed, pointValue, radius, velocity, color;
-
-    //public abstract void fadeInAndOut();
+    int x, y, damage, pointValue, radius, velocity, color;
 
     public Alien(PApplet p, int x, int y, int damage, int color) {
         this.p = p;
         this.x = x;
         this.y = y;
         radius = p.width/25;
-        velocity = 30;
+        velocity = 50;
         this.damage = damage;
         this.color = color;
     }
@@ -28,8 +26,12 @@ public abstract class Alien {
         y += p.height/20;
     }
 
-    public void changeVelocity() {
+    public void reverseVelocity() {
         velocity = -velocity;
+    }
+
+    public void increaseVelocity() {
+        velocity += 3;
     }
 
     public void moveLeft() {

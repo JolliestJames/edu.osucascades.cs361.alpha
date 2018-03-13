@@ -9,22 +9,22 @@ public class Game {
     Ship ship;
     Score score;
     int timeBuffer = 0;
-    int alienMoveTime = 0;
+    int fleetSignal = 0;
+
     ArrayList<Bomb> bombs = new ArrayList();
     ArrayList<Rocket> rockets = new ArrayList();
     ArrayList<Fort> forts = new ArrayList();
     AlienUFO mothership;
 
-    //Create 2D array for each row of aliens
-    ArrayList<ArrayList<Objects>> Aliens = new ArrayList();
-
-    ArrayList<RedAlien> redAliens = new ArrayList();
-    ArrayList<YellowAlien > yellowAliens = new ArrayList();
-    ArrayList<GreenAlien> greenAliens = new ArrayList();
-    ArrayList<BlueAlien> blueAliens = new ArrayList();
-    ArrayList<PurpleAlien> purpleAliens = new ArrayList();
+    private ArrayList<Fleet> fleets = new ArrayList<>();
+    private Fleet redFleet = new Fleet(p, 35);
+    private Fleet yellowFleet = new Fleet(p, 40);
+    private Fleet greenFleet = new Fleet(p, 45);
+    private Fleet blueFleet = new Fleet(p, 50);
+    private Fleet purpleFleet = new Fleet(p, 55);
 
     public Game (PApplet pApplet){
+
         p = pApplet;
         ship = new Ship(p);
         score = new Score(p);
@@ -35,12 +35,18 @@ public class Game {
         forts.add(new Fort(p, p.width - p.width/10 - p.width/8, p.height-p.height/4));
 
         for (int i = 0; i < 10; i++) {
-            redAliens.add(new RedAlien (p, p.width/4+i*p.width/18, 100));
-            yellowAliens.add(new YellowAlien (p, p.width/4+i*p.width/18, 200));
-            greenAliens.add(new GreenAlien (p, p.width/4+i*p.width/18, 300));
-            blueAliens.add(new BlueAlien (p, p.width/4+i*p.width/18, 400));
-            purpleAliens.add(new PurpleAlien (p, p.width/4+i*p.width/18, 500));
+            redFleet.addAlien(new RedAlien (p, p.width/4+i*p.width/18, 100));
+            yellowFleet.addAlien(new YellowAlien (p, p.width/4+i*p.width/18, 200));
+            greenFleet.addAlien(new GreenAlien (p, p.width/4+i*p.width/18, 300));
+            blueFleet.addAlien(new BlueAlien (p, p.width/4+i*p.width/18, 400));
+            purpleFleet.addAlien(new PurpleAlien (p, p.width/4+i*p.width/18, 500));
         }
+
+        fleets.add(redFleet);
+        fleets.add(yellowFleet);
+        fleets.add(greenFleet);
+        fleets.add(blueFleet);
+        fleets.add(purpleFleet);
 
         p.background(55);
     }
@@ -48,7 +54,8 @@ public class Game {
     public void update() {
         // update all objects in the game
         timeBuffer -= 1;
-        alienMoveTime += 1;
+        fleetSignal += 1;
+
         if (p.keyPressed) {
             if (p.key == 'd') {
                 ship.moveRight();
@@ -63,79 +70,23 @@ public class Game {
             }
         }
 
-        if (alienMoveTime == 40) {
-
-            for (YellowAlien yellowAlien: yellowAliens) {
-                if (yellowAliens.get(yellowAliens.size() - 1).x > p.width - p.width / 50) {
-                    yellowAlien.changeVelocity();
-                    yellowAlien.moveDown();
-                } else if (yellowAliens.get(0).x < p.width / 50) {
-                    yellowAlien.changeVelocity();
-                    yellowAlien.moveDown();
+        for(Fleet fleet : fleets){
+            if(fleet.shouldMove(fleetSignal)) {
+                if (fleet.rightMostAlien().x >  p.width - p.width / 50) {
+                    fleet.reverseVelocity();
+                    fleet.moveDown();
+                    fleet.increaseVelocity();
+                } else if (fleet.leftMostAlien().x < p.width / 50){
+                    fleet.reverseVelocity();
+                    fleet.moveDown();
+                    fleet.increaseVelocity();
                 }
+                fleet.move();
             }
-
-            for (YellowAlien yellowAlien : yellowAliens) {yellowAlien.move();}
         }
 
-        if (alienMoveTime == 35) {
-            for (RedAlien redAlien: redAliens) {
-                if (redAliens.get(redAliens.size() - 1).x > p.width - p.width / 50) {
-                    redAlien.changeVelocity();
-                    redAlien.moveDown();
-                } else if (redAliens.get(0).x < p.width / 50) {
-                    redAlien.changeVelocity();
-                    redAlien.moveDown();
-                }
-            }
-
-            for (RedAlien redAlien : redAliens) { redAlien.move(); }
-        }
-
-        if (alienMoveTime == 45) {
-            for (GreenAlien greenAlien : greenAliens) {
-                if (greenAliens.get(greenAliens.size() - 1).x > p.width - p.width / 50) {
-                    greenAlien.changeVelocity();
-                    greenAlien.moveDown();
-                } else if (greenAliens.get(0).x < p.width / 50) {
-                    greenAlien.changeVelocity();
-                    greenAlien.moveDown();
-                }
-            }
-
-            for (GreenAlien greenAlien : greenAliens) { greenAlien.move(); }
-        }
-
-        if (alienMoveTime == 50) {
-            for (BlueAlien blueAlien : blueAliens) {
-                if (blueAliens.get(blueAliens.size() - 1).x > p.width - p.width / 50) {
-                    blueAlien.changeVelocity();
-                    blueAlien.moveDown();
-                } else if (blueAliens.get(0).x < p.width / 50) {
-                    blueAlien.changeVelocity();
-                    blueAlien.moveDown();
-                }
-            }
-
-            for (BlueAlien blueAlien : blueAliens) { blueAlien.move(); }
-        }
-
-        if (alienMoveTime == 55) {
-            for (PurpleAlien purpleAlien : purpleAliens) {
-                if (purpleAliens.get(purpleAliens.size() - 1).x > p.width - p.width / 50) {
-                    purpleAlien.changeVelocity();
-                    purpleAlien .moveDown();
-                } else if (purpleAliens.get(0).x < p.width / 50) {
-                    purpleAlien.changeVelocity();
-                    purpleAlien.moveDown();
-                }
-            }
-
-            for (PurpleAlien purpleAlien : purpleAliens) {purpleAlien.move();}
-        }
-
-        if (alienMoveTime >= 55) {
-            alienMoveTime = 0;
+        if (fleetSignal >= 55) {
+            fleetSignal = 0;
         }
 
         mothership.move();
@@ -152,36 +103,13 @@ public class Game {
             fort.draw();
         }
 
-        for (YellowAlien yellowAlien : yellowAliens) {
-            yellowAlien.draw();
+        for(Fleet fleet: fleets) {
+            fleet.draw();
         }
-
-        for (RedAlien redAlien : redAliens) {
-            redAlien.draw();
-        }
-
-        for (GreenAlien greenAlien : greenAliens) {
-            greenAlien.draw();
-        }
-
-        for (BlueAlien blueAlien : blueAliens) {
-            blueAlien.draw();
-        }
-
-        for (PurpleAlien purpleAlien : purpleAliens) {
-            purpleAlien.draw();
-        }
-
-        if (alienMoveTime >= 55) {
-            alienMoveTime = 0;
-        }
-
 
         for (Rocket rocket : rockets) {
             rocket.move();
             rocket.draw();
         }
-
-
     }
 }
