@@ -100,10 +100,6 @@ public class Game {
 
         armada.drawFleets();
 
-        /*for(Fleet fleet: fleets) {
-            fleet.drawAliens();
-        }*/
-
         for (Rocket rocket : rockets) {
             rocket.move();
             rocket.draw();

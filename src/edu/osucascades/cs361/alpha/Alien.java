@@ -13,7 +13,7 @@ public abstract class Alien {
         this.x = x;
         this.y = y;
         radius = p.width/25;
-        velocity = 50;
+        velocity = 35;
         this.damage = damage;
         this.color = color;
     }

@@ -9,6 +9,8 @@ public class Fleet {
     ArrayList<Alien> aliens;
     PApplet p;
     int moveSignal;
+    boolean canMove;
+    boolean canMoveDown;
 
     public Fleet(PApplet p, int t) {
         this.p = p;
