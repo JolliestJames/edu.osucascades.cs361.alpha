@@ -35,18 +35,16 @@ public abstract class Alien {
     }
 
     public boolean isNearRightEdge() {
-        if(x >  p.width - p.width / 45 - velocity) {
+        if(x >  p.width - p.width/45 - velocity) {
             return true;
         }
-
         return false;
     }
 
     public boolean isNearLeftEdge() {
-        if(x < p.width / 45 - velocity) {
+        if(x < p.width/45 - velocity) {
             return true;
         }
-
         return false;
     }
 

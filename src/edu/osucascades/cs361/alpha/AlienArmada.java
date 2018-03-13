@@ -30,7 +30,7 @@ public class AlienArmada {
                 }
                 if (!fleet.hasMoved) {
                     fleet.move();
-                    fleet.hasMovedDown= false;
+                    fleet.hasMovedDown = false;
                 }
                 fleet.hasMoved = false;
             }
