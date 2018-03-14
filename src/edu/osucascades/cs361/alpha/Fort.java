@@ -20,7 +20,7 @@ public class Fort {
 
     public void draw() {
         p.fill(200, 150, 50);
-        p.rect(x, y, p.width/8, p.height/20);
+        p.rect(x, y, width, height);
     }
 
     public void decay() {

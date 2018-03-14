@@ -18,14 +18,8 @@ public class Bomb {
         y += speed;
     }
 
-    public void explode() {
-        // explode logic goes here
-        // not entirely sure if this section is necessary
-    }
-
     public void draw() {
         p.fill(200, 0, 0);
         p.rect (x, y, 15, 15);
-        // logic to draw the projectile goes here
     }
 }

@@ -23,7 +23,7 @@ public class Game {
     private Fleet blueFleet;
     private Fleet purpleFleet;
 
-    public Game (PApplet pApplet){
+    public Game (PApplet pApplet) {
 
         p = pApplet;
         ship = new Ship(p);
@@ -37,17 +37,17 @@ public class Game {
         blueFleet = new Fleet(p, 50);
         purpleFleet = new Fleet(p, 55);
 
-        forts.add(new Fort(p, p.width/10, p.height-p.height/4));
-        forts.add(new Fort(p, p.width/3, p.height-p.height/4));
-        forts.add(new Fort(p, p.width - p.width/3 - p.width/8, p.height-p.height/4));
-        forts.add(new Fort(p, p.width - p.width/10 - p.width/8, p.height-p.height/4));
+        forts.add(new Fort(p, p.width / 10, p.height - p.height / 4));
+        forts.add(new Fort(p, p.width / 3, p.height - p.height / 4));
+        forts.add(new Fort(p, p.width - p.width / 3 - p.width / 8, p.height - p.height / 4));
+        forts.add(new Fort(p, p.width - p.width / 10 - p.width / 8, p.height - p.height / 4));
 
         for (int i = 0; i < 10; i++) {
-            redFleet.addAlien(new RedAlien (p, p.width/4+i*p.width/18, 100));
-            yellowFleet.addAlien(new YellowAlien (p, p.width/4+i*p.width/18, 200));
-            greenFleet.addAlien(new GreenAlien (p, p.width/4+i*p.width/18, 300));
-            blueFleet.addAlien(new BlueAlien (p, p.width/4+i*p.width/18, 400));
-            purpleFleet.addAlien(new PurpleAlien (p, p.width/4+i*p.width/18, 500));
+            redFleet.addAlien(new RedAlien(p, p.width / 4 + i * p.width / 18, 100));
+            yellowFleet.addAlien(new YellowAlien(p, p.width / 4 + i * p.width / 18, 200));
+            greenFleet.addAlien(new GreenAlien(p, p.width / 4 + i * p.width / 18, 300));
+            blueFleet.addAlien(new BlueAlien(p, p.width / 4 + i * p.width / 18, 400));
+            purpleFleet.addAlien(new PurpleAlien(p, p.width / 4 + i * p.width / 18, 500));
         }
 
         armada.addFleet(redFleet);
@@ -60,25 +60,12 @@ public class Game {
     }
 
     public void update() {
-        // update all objects in the game
-        timeBuffer -= 1;
-        fleetSignal += 1;
-
-        if (p.keyPressed) {
-            if (p.key == 'd') {
-                ship.moveRight();
-            }
-            if (p.key == 'a') {
-                ship.moveLeft();
-            }
-            if (p.key == ' ' && timeBuffer <= 0) {
-                // Set time delay between rocket shots
-                rockets.add(new Rocket(p, ship.x, ship.y - ship.p.height/20));
-                timeBuffer = 40;
-            }
-        }
+        tickTock();
+        keyPressed();
+        checkIfShotFort();
 
         armada.moveFleets(fleetSignal);
+
 
         if (fleetSignal >= 55) {
             fleetSignal = 0;
@@ -105,4 +92,50 @@ public class Game {
             rocket.draw();
         }
     }
+
+    public void tickTock() {
+        timeBuffer -= 1;
+        fleetSignal += 1;
+    }
+
+    public void keyPressed() {
+        if (p.key == 'd') ship.moveRight();
+        if (p.key == 'a') ship.moveLeft();
+        if (p.key == ' ' && timeBuffer <= 0) {
+            // Set time delay between rocket shots
+            rockets.add(new Rocket(p, ship.x, ship.y - ship.p.height/20));
+            timeBuffer = 40;
+        }p.key = '\0';
+    }
+
+    public void checkIfShotFort() {
+        for( Fort fort : forts) {
+            if (hitByRocket(fort)) {
+                fort.width -= 100;
+                fort.height -= 40;
+                fort.x += 50;
+                fort.y += 20;
+            }
+        }
+    }
+
+    public boolean hitByRocket(Fort fort) {
+        for (Rocket rocket : rockets) {
+            if (fort.height < 50) {
+                fort.width = 0;
+                fort.height = 0;
+            }
+            if (rocket.x <= fort.x+fort.width
+                    && rocket.x > fort.x
+                    && rocket.y >= fort.y-fort.height
+                    && rocket.y < fort.y) {
+                rocket.y = 0;
+                timeBuffer = 0;
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

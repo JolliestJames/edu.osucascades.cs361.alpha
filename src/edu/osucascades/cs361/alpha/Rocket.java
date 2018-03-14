@@ -11,23 +11,16 @@ public class Rocket {
         p = pApplet;
         x = xPos;
         y = yPos;
-        speed = 100;
+        speed = 50;
     }
 
     public void move() {
         y -= speed;
-        // move logic goes here
-        // does not need to have more specific move functions since the rockets only go straight up
     }
 
-    public void explode() {
-        // explode logic goes here
-        // not entirely sure if this section is necessary
-    }
 
     public void draw() {
         p.fill(255, 255, 255);
         p.rect (x, y, 15, 35);
-        // logic to draw the projectile goes here
     }
 }
