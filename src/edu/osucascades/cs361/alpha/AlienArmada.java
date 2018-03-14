@@ -20,6 +20,7 @@ public class AlienArmada {
 
     public void moveFleets(int s) {
         for(Fleet fleet : fleets){
+            fleet.hasMoved = false;
             if(fleet.shouldMove(s)) {
                 if ((fleet.shouldMoveLeft() || fleet.shouldMoveRight()) && !fleet.hasMovedDown) {
                     fleet.reverseVelocity();
@@ -32,7 +33,6 @@ public class AlienArmada {
                     fleet.move();
                     fleet.hasMovedDown = false;
                 }
-                fleet.hasMoved = false;
             }
         }
     }
